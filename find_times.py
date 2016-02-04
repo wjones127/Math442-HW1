@@ -5,7 +5,7 @@ import csv
 import random
 
 sizes = [2**i for i in range(8,16)]
-the_iters = [500]
+the_iters = [2000]
 
 random.shuffle(sizes)
 
