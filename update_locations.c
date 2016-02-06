@@ -1,10 +1,9 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
-#define NELEMS(x)  (sizeof(x) / sizeof((x)[0]))
-
-
+#define BILLION  1E9
 
 float random_float (int lower_bound, int upper_bound) {
   float scale = upper_bound - lower_bound;
@@ -41,6 +40,8 @@ float sum(float *x, int size) {
 int main(int argc, char **argv) {
   int size = strtol(argv[1], NULL, 0);
   int iter = strtol(argv[2], NULL, 0);
+
+printf("%lu,%lu,", (unsigned long)size, (unsigned long)iter);
   
   srand(size); // Set time seed
   
@@ -53,18 +54,27 @@ int main(int argc, char **argv) {
   float *vy = generate_random_array(y, size, 1);
   float *vz = generate_random_array(y, size, 1);
 
-  /*  for (uint32_t i = 0; i < size; i++)
-      printf("%lu: (%.6f, %.6f, %.6f)\n", (unsigned long)i, x[i], y[i], z[i]);*/
 
+
+  // Calculate time taken by a request
+  struct timespec requestStart, requestEnd;
+  clock_gettime(CLOCK_REALTIME, &requestStart); // Timer start
+  
   for (uint32_t i = 0; i < iter; i++)
     update_coords(x, y, z, vx, vy, vz, size);
 
-  /*for (uint32_t i = 0; i < size; i++)
-    printf("%lu: (%.6f, %.6f, %.6f)\n", (unsigned long)i, x[i], y[i], z[i]);*/
+  clock_gettime(CLOCK_REALTIME, &requestEnd); // Timer end
+
+  // Calculate time it took
+  double accum = ( requestEnd.tv_sec - requestStart.tv_sec )
+    + ( requestEnd.tv_nsec - requestStart.tv_nsec )
+    / BILLION;
+  printf( "%lf,", accum );
+
 
   // Checksum
   float chksum = sum(x, size) + sum(y, size) + sum(z, size);
-  printf("Checksum: %.6f", chksum);
+  printf("%.6f\n", chksum);
  
   // Free vectors
   free(x); 
