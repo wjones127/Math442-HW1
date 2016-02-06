@@ -30,10 +30,17 @@ void update_coords(float *x, float *y, float *z, float *vx, float *vy,
   }
 }
 
+float sum(float *x, int size) {
+  float sum = 0;
+  for (uint32_t i = 0; i < size; i++)
+    sum += x[i];
+  return sum;
+}
+
 
 int main(int argc, char **argv) {
-  int size = 10; //strtol(argv[0], NULL, 10);
-  int iter = 10; //strtol(argv[1], NULL, 10);
+  int size = strtol(argv[1], NULL, 0);
+  int iter = strtol(argv[2], NULL, 0);
   
   srand(size); // Set time seed
   
@@ -46,15 +53,19 @@ int main(int argc, char **argv) {
   float *vy = generate_random_array(y, size, 1);
   float *vz = generate_random_array(y, size, 1);
 
-  for (uint32_t i = 0; i < size; i++)
-    printf("%lu: (%.6f, %.6f, %.6f)\n", (unsigned long)i, x[i], y[i], z[i]);
+  /*  for (uint32_t i = 0; i < size; i++)
+      printf("%lu: (%.6f, %.6f, %.6f)\n", (unsigned long)i, x[i], y[i], z[i]);*/
 
   for (uint32_t i = 0; i < iter; i++)
     update_coords(x, y, z, vx, vy, vz, size);
 
-  for (uint32_t i = 0; i < size; i++)
-    printf("%lu: (%.6f, %.6f, %.6f)\n", (unsigned long)i, x[i], y[i], z[i]);
+  /*for (uint32_t i = 0; i < size; i++)
+    printf("%lu: (%.6f, %.6f, %.6f)\n", (unsigned long)i, x[i], y[i], z[i]);*/
 
+  // Checksum
+  float chksum = sum(x, size) + sum(y, size) + sum(z, size);
+  printf("Checksum: %.6f", chksum);
+ 
   // Free vectors
   free(x); 
   free(y); 
