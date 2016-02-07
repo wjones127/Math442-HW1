@@ -15,3 +15,7 @@ into the shell.
 
 **Note**: the C function does not compile on Mac OS X, because the timer function
 only exists on other OSes. I may look into a more portable option later.
+
+### Notes on code
+- spaces per tab in c (like python)
+- 
