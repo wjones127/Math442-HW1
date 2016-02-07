@@ -26,7 +26,8 @@ float random_float (int32_t lower_bound, int32_t upper_bound)
 
 float* generate_random_array (size_t array_size, int32_t bound) 
 {
-    float *array = malloc(array_size * sizeof (float));
+    float *array = calloc(array_size, sizeof(float));
+    assert(array && "give us memory");
     for (uint32_t i = 0; i < array_size; i++) {
         array[i] = random_float(-1 * bound, bound);
     }

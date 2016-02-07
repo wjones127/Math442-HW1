@@ -1,5 +1,5 @@
 
-CFLAGS = -Wall -pedantic
+CFLAGS = -Wall -Wextra -pedantic -Werror
 default:
 	clang $(CFLAGS) update_locations.c 
 
