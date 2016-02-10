@@ -6,11 +6,37 @@
 #define BILLION  1E9
 #include <time.h>
 
+#ifdef __MACH__
+#include <mach/clock.h>
+#include <mach/mach.h>
+#endif
+
+/*
+ * Used the following function to get time for Mac OS X.
+ * Based on this snippet: https://gist.github.com/alfwatt/3588c5aa1f7a1ef7a3bb
+ */
+
+int current_utc_time(struct timespec *ts) {
+
+#ifdef __MACH__ // OS X does not have clock_gettime, use clock_get_time
+    clock_serv_t cclock;
+    mach_timespec_t mts;
+    host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &cclock);
+    clock_get_time(cclock, &mts);
+    mach_port_deallocate(mach_task_self(), cclock);
+    ts->tv_sec = mts.tv_sec;
+    ts->tv_nsec = mts.tv_nsec;
+    return 1;
+#else
+    clock_gettime(CLOCK_REALTIME, ts);
+#endif
+}
+
 uint64_t current_time()
 {
     /* returns time in milliseconds */
     struct timespec tp;
-    int res = clock_gettime(CLOCK_MONOTONIC, &tp); 
+    int res = current_utc_time(&tp); 
     if (res == -1) {
         fprintf(stderr, "Failure with clock_gettime");
         return 0;
