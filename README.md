@@ -36,7 +36,16 @@ is making inconsistently about how to run the program that has a huge effect
 on performance. It will be interesting to see whether this effect persists in
 the C and assembly implementations.
 
+![Comparison of C optimizations](https://raw.githubusercontent.com/wjones127/Math442-HW1/master/c_code/c_optimizations.png)
 
+Here we can see that optimization level of the compiler doesn't have a significant
+effect on performance of the program. Here we see greater variance in run time
+with greater input size.
+
+![Comparison of types in C](https://raw.githubusercontent.com/wjones127/Math442-HW1/master/c_code/c_type.png)
+
+We also see that in our test there wasn't a significant difference between using
+float or double in our program, at least in terms of speed. 
 
 
 
