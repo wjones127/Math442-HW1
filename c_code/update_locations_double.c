@@ -44,15 +44,15 @@ uint64_t current_time()
     return BILLION * tp.tv_sec + tp.tv_nsec;
 }
 
-float random_float (int32_t lower_bound, int32_t upper_bound) 
+double random_float (int32_t lower_bound, int32_t upper_bound) 
 {
-    float scale = upper_bound - lower_bound;
-    return ((rand() / (float) RAND_MAX) * scale) + lower_bound;
+    double scale = upper_bound - lower_bound;
+    return ((rand() / (double) RAND_MAX) * scale) + lower_bound;
 }
 
-float* generate_random_array (size_t array_size, int32_t bound) 
+double* generate_random_array (size_t array_size, int32_t bound) 
 {
-    float *array = calloc(array_size, sizeof(float));
+    double *array = calloc(array_size, sizeof(double));
     assert(array && "give us memory");
     for (uint32_t i = 0; i < array_size; i++) {
         array[i] = random_float(-1 * bound, bound);
@@ -60,8 +60,8 @@ float* generate_random_array (size_t array_size, int32_t bound)
     return array;
 }
 
-void update_coords(float *x, float *y, float *z, float *vx, float *vy,
-                   float *vz, size_t size) 
+void update_coords(double *x, double *y, double *z, double *vx, double *vy,
+                   double *vz, size_t size) 
 {
     for (uint32_t i = 0; i < size; i++) {
         x[i] += vx[i];
@@ -70,9 +70,9 @@ void update_coords(float *x, float *y, float *z, float *vx, float *vy,
   }
 }
 
-float sum(float *arr, size_t size) 
+double sum(double *arr, size_t size) 
 {
-    float sum = 0;
+    double sum = 0;
     for (uint32_t i = 0; i < size; i++)
         sum += arr[i];
     return sum;
@@ -90,14 +90,14 @@ int main(int argc, char **argv)
     srand(size); 
   
     // Position vectors
-    float *x = generate_random_array(size, 1000);
-    float *y = generate_random_array(size, 1000);
-    float *z = generate_random_array(size, 1000);
+    double *x = generate_random_array(size, 1000);
+    double *y = generate_random_array(size, 1000);
+    double *z = generate_random_array(size, 1000);
 
     // Velocity vectors
-    float *vx = generate_random_array(size, 1);
-    float *vy = generate_random_array(size, 1);
-    float *vz = generate_random_array(size, 1);
+    double *vx = generate_random_array(size, 1);
+    double *vy = generate_random_array(size, 1);
+    double *vz = generate_random_array(size, 1);
 
     uint64_t start = current_time();
     for (uint32_t i = 0; i < iter; i++) {
@@ -107,7 +107,7 @@ int main(int argc, char **argv)
     printf("%lu,", end - start);
 
     // checksum is an invariant of the input parameters (size and iter)
-    float chksum = sum(x, size) + sum(y, size) + sum(z, size);
+    double chksum = sum(x, size) + sum(y, size) + sum(z, size);
     printf("%.6f\n", chksum);
  
     free(x); 
