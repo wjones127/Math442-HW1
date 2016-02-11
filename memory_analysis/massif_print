@@ -1,0 +1,74 @@
+--------------------------------------------------------------------------------
+Command:            ./a.out 1048576 500 0
+Massif arguments:   --massif-out-file=massif_out
+ms_print arguments: massif_out
+--------------------------------------------------------------------------------
+
+
+    MB
+24.02^ ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::#
+     | :                                                                     #
+     | :                                                                     #
+     | :                                                                     #
+     |::                                                                     #
+     |::                                                                     #
+     |::                                                                     #
+     |::                                                                     #
+     |::                                                                     #
+     |::                                                                     #
+     |::                                                                     #
+     |::                                                                     #
+     |::                                                                     #
+     |::                                                                     #
+     |::                                                                     #
+     |::                                                                     #
+     |::                                                                     #
+     |::                                                                     #
+     |::                                                                     #
+     |::                                                                     #
+   0 +----------------------------------------------------------------------->Gi
+     0                                                                   27.41
+
+Number of snapshots: 14
+ Detailed snapshots: [7 (peak)]
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  0              0                0                0             0            0
+  1        131,386        4,198,344        4,194,304         4,040            0
+  2     92,373,179        8,396,688        8,388,608         8,080            0
+  3    184,614,129       12,595,032       12,582,912        12,120            0
+  4    276,855,079       16,793,376       16,777,216        16,160            0
+  5    369,096,029       20,991,720       20,971,520        20,200            0
+  6    461,336,979       25,190,064       25,165,824        24,240            0
+  7 29,430,334,986       25,190,064       25,165,824        24,240            0
+99.90% (25,165,824B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->99.90% (25,165,824B) 0x400914: generate_random_array (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+  ->16.65% (4,194,304B) 0x400C19: go (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+  | ->16.65% (4,194,304B) 0x400EDD: main (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+  |   
+  ->16.65% (4,194,304B) 0x400C2D: go (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+  | ->16.65% (4,194,304B) 0x400EDD: main (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+  |   
+  ->16.65% (4,194,304B) 0x400C41: go (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+  | ->16.65% (4,194,304B) 0x400EDD: main (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+  |   
+  ->16.65% (4,194,304B) 0x400C55: go (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+  | ->16.65% (4,194,304B) 0x400EDD: main (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+  |   
+  ->16.65% (4,194,304B) 0x400C69: go (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+  | ->16.65% (4,194,304B) 0x400EDD: main (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+  |   
+  ->16.65% (4,194,304B) 0x400C7D: go (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+    ->16.65% (4,194,304B) 0x400EDD: main (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+      
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  8 29,430,334,986       20,991,720       20,971,520        20,200            0
+  9 29,430,335,018       16,793,376       16,777,216        16,160            0
+ 10 29,430,335,050       12,595,032       12,582,912        12,120            0
+ 11 29,430,335,082        8,396,688        8,388,608         8,080            0
+ 12 29,430,335,114        4,198,344        4,194,304         4,040            0
+ 13 29,430,335,146                0                0             0            0

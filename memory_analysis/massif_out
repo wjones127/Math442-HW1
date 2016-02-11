@@ -1,0 +1,129 @@
+desc: --massif-out-file=massif_out
+cmd: ./a.out 1048576 500 0
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=131386
+mem_heap_B=4194304
+mem_heap_extra_B=4040
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=92373179
+mem_heap_B=8388608
+mem_heap_extra_B=8080
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=184614129
+mem_heap_B=12582912
+mem_heap_extra_B=12120
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=276855079
+mem_heap_B=16777216
+mem_heap_extra_B=16160
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=369096029
+mem_heap_B=20971520
+mem_heap_extra_B=20200
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=461336979
+mem_heap_B=25165824
+mem_heap_extra_B=24240
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=29430334986
+mem_heap_B=25165824
+mem_heap_extra_B=24240
+mem_stacks_B=0
+heap_tree=peak
+n1: 25165824 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n6: 25165824 0x400914: generate_random_array (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+  n1: 4194304 0x400C19: go (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+   n0: 4194304 0x400EDD: main (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+  n1: 4194304 0x400C2D: go (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+   n0: 4194304 0x400EDD: main (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+  n1: 4194304 0x400C41: go (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+   n0: 4194304 0x400EDD: main (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+  n1: 4194304 0x400C55: go (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+   n0: 4194304 0x400EDD: main (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+  n1: 4194304 0x400C69: go (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+   n0: 4194304 0x400EDD: main (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+  n1: 4194304 0x400C7D: go (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+   n0: 4194304 0x400EDD: main (in /home/alex/SpiderOak Hive/all_notes/winter/systems/Math442-HW1/memory_analysis/a.out)
+#-----------
+snapshot=8
+#-----------
+time=29430334986
+mem_heap_B=20971520
+mem_heap_extra_B=20200
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=29430335018
+mem_heap_B=16777216
+mem_heap_extra_B=16160
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=29430335050
+mem_heap_B=12582912
+mem_heap_extra_B=12120
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=29430335082
+mem_heap_B=8388608
+mem_heap_extra_B=8080
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=29430335114
+mem_heap_B=4194304
+mem_heap_extra_B=4040
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=29430335146
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty

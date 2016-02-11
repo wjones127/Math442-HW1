@@ -78,4 +78,33 @@ into the shell.
 only exists on other OSes. I may look into a more portable option later.
 
 ### The Assembly Test
+We implemented a `combine_array` function in assembly, which takes as input two float arrays and performs the the `+=` operation.
+We then replaced `update_coordinates` with three calls to `combine_array`, one call for each coordinate. 
+
+TODO add timings
+
+### Memory Profiling
+To profile the memory we used the massif tool inside of valgrind.
+The tool is used with the following commands:
+```
+valgrind --tool=massif  --massif-out-file=massif_out ./a.out 1048576 500 0;
+ms_print massif_out > massif_print
+```
+
+Running the profiler on the c code using floats produces the following:
+![Massif on c-float graph](https://raw.githubusercontent.com/wjones127/Math442-HW1/master/memory_analysis/massif_graph_c_float.png)
+![Massif on c-float chart](https://raw.githubusercontent.com/wjones127/Math442-HW1/master/memory_analysis/massif_graph_asm.png)
+
+
+First, the x-axis is Gi which is number of instructions times 1,000 (because its giga).
+We think of Gi as a unit of time.
+The y-axis is MB, megabytes, the amount of memory on the heap.
+
+Observations: we notice that the graphs for c-float and asm are similar, but that the x-axis is longer for asm. 
+First, it is expected that the total amont of memory used by the two programs is the same, since our assembly optimizations were only for speeding up the `+=` operation, not reducing memory. However it is surprising that the x-axis is longer for asm. THis suggests that the asm code requires more instructions. Perhaps the compiler does some optimization, maybe vectorizes, to reduce the number of instructions.
+
+- Sources for memory profiling:
+    - http://valgrind.org/docs/manual/ms-manual.html
+    - https://sites.google.com/a/case.edu/hpc-upgraded-cluster/home/important-notes-for-new-users/valgrind-utility
+    - https://developer.gnome.org/optimization-guide/stable/massif.html.en
 
