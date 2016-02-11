@@ -92,9 +92,12 @@ ms_print massif_out > massif_print
 ```
 
 Running the profiler on the c code using floats produces the following:
-![Massif on c-float graph](https://raw.githubusercontent.com/wjones127/Math442-HW1/master/memory_analysis/massif_graph_c_float.png)
-![Massif on c-float chart](https://raw.githubusercontent.com/wjones127/Math442-HW1/master/memory_analysis/massif_graph_asm.png)
-
+![c-float graph](https://raw.githubusercontent.com/wjones127/Math442-HW1/master/memory_analysis/massif_graph_c_float.png)
+c-float graph ^
+![c-double chart](https://raw.githubusercontent.com/wjones127/Math442-HW1/master/memory_analysis/massif_graph_c_double.png)
+c-double graph ^
+![c-c-asm chart](https://raw.githubusercontent.com/wjones127/Math442-HW1/master/memory_analysis/massif_graph_asm.png)
+c-inline assembly with floats grpah ^
 
 First, the x-axis is Gi which is number of instructions times 1,000 (because its giga).
 We think of Gi as a unit of time.
@@ -102,6 +105,8 @@ The y-axis is MB, megabytes, the amount of memory on the heap.
 
 Observations: we notice that the graphs for c-float and asm are similar, but that the x-axis is longer for asm. 
 First, it is expected that the total amont of memory used by the two programs is the same, since our assembly optimizations were only for speeding up the `+=` operation, not reducing memory. However it is surprising that the x-axis is longer for asm. THis suggests that the asm code requires more instructions. Perhaps the compiler does some optimization, maybe vectorizes, to reduce the number of instructions.
+
+TODO analyze double graph
 
 - Sources for memory profiling:
     - http://valgrind.org/docs/manual/ms-manual.html
