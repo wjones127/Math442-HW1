@@ -29,6 +29,7 @@ int current_utc_time(struct timespec *ts) {
     return 1;
 #else
     clock_gettime(CLOCK_REALTIME, ts);
+    return 1;
 #endif
 }
 

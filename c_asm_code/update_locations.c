@@ -68,39 +68,36 @@ void combine_arrays(uint64_t *arr, uint64_t *add, uint64_t size)
 
 void combine_arrays_float() 
 {
-    float a[2] = {10, 20};
-    float b[2] = {1, 2};
-    uint64_t size = 2;
+    float a[3] = {10, 20, 30};
+    float b[3] = {1, 2, 3};
+    uint64_t size = 3;
     //uint64_t out;
     float o = 0;
     asm (
-        //"movq %1, %%rax\n"
-        //"movl -4(%%rbp), %%eax\n"
-        //"movq %3, %%rdx\n" // size 
-        //"movq $0, %%rcx\n" // counter
+        "movq %3, %%rdx\n" // size 
+        "movq $0, %%rcx\n" // counter
 
-        //"loop_start4:\n"
-        //"movss $0, %%xmm0\n"
-        //
-        //"movss (%2, %%rcx, 4), %%xmm1\n"
-        //"addss %%xmm0, %%xmm1\n"
+        "loop_start4:\n"
         "movss (%1, %%rcx, 4), %%xmm0\n"
-        "movss %%xmm0, (%2, %%rcx, 4)\n"
+        "movss (%2, %%rcx, 4), %%xmm1\n"
+        "addss %%xmm0, %%xmm1\n"
+        "movss %%xmm1, (%2, %%rcx, 4)\n"
+        "incq %%rcx\n"
 
-        //"incq %%rcx\n"
-
-        //"cmpq %%rdx, %%rcx\n"
-        //"jl loop_start4\n"
+        "cmpq %%rdx, %%rcx\n"
+        "jl loop_start4\n"
 
         //"movq %%rax, %0\n"
         :"=r"(o)
         :"r"(a), "r"(b), "r"(size)
-        :"%rax", "%xmm0","%rcx"         /* clobbered register */
+        :"%rax", "%xmm0","xmm1","%rcx","%rdx"         /* clobbered register */
         );
     //printf("out = %" PRId64 "\n", out);
     printf("o = %f\n", o);
 
     printf("%f\n", b[0]);
+    printf("%f\n", b[1]);
+    printf("%f\n", b[2]);
 }
 
 void double_arr() 
