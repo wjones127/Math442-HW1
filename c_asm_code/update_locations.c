@@ -66,6 +66,43 @@ void combine_arrays(uint64_t *arr, uint64_t *add, uint64_t size)
     assert(out == 0);
 }
 
+void combine_arrays_float() 
+{
+    float a[2] = {10, 20};
+    float b[2] = {1, 2};
+    uint64_t size = 2;
+    //uint64_t out;
+    float o = 0;
+    asm (
+        //"movq %1, %%rax\n"
+        //"movl -4(%%rbp), %%eax\n"
+        //"movq %3, %%rdx\n" // size 
+        //"movq $0, %%rcx\n" // counter
+
+        //"loop_start4:\n"
+        //"movss $0, %%xmm0\n"
+        //
+        //"movss (%2, %%rcx, 4), %%xmm1\n"
+        //"addss %%xmm0, %%xmm1\n"
+        "movss (%1, %%rcx, 4), %%xmm0\n"
+        "movss %%xmm0, (%2, %%rcx, 4)\n"
+
+        //"incq %%rcx\n"
+
+        //"cmpq %%rdx, %%rcx\n"
+        //"jl loop_start4\n"
+
+        //"movq %%rax, %0\n"
+        :"=r"(o)
+        :"r"(a), "r"(b), "r"(size)
+        :"%rax", "%xmm0","%rcx"         /* clobbered register */
+        );
+    //printf("out = %" PRId64 "\n", out);
+    printf("o = %f\n", o);
+
+    printf("%f\n", b[0]);
+}
+
 void double_arr() 
 {
     printf("here\n");
@@ -113,23 +150,25 @@ int main(int argc, char *argv[])
     assert(argc > 0);
     assert(argv);
 
-    uint64_t size = 4;
-    uint64_t pos[4] = {10, 20, 30, 40};
-    uint64_t vel[4] = {1, 2, 3, 4};
+    combine_arrays_float();
+
+    //uint64_t size = 4;
+    //uint64_t pos[4] = {10, 20, 30, 40};
+    //uint64_t vel[4] = {1, 2, 3, 4};
 
     //printf("%lf\n", pos[0]);
     //printf("%lf\n", pos[1]);
     //printf("%lf\n", pos[2]);
 
-    combine_arrays(pos, vel, size);
+    //combine_arrays(pos, vel, size);
 
     //printf("%lf\n", pos[0]);
     //printf("%lf\n", pos[1]);
     //printf("%lf\n", pos[2]);
 
-    printf("[0] = %" PRId64 "\n", pos[0]);
-    printf("[1] = %" PRId64 "\n", pos[1]);
-    printf("[2] = %" PRId64 "\n", pos[2]);
-    printf("[3] = %" PRId64 "\n", pos[3]);
+    //printf("[0] = %" PRId64 "\n", pos[0]);
+    //printf("[1] = %" PRId64 "\n", pos[1]);
+    //printf("[2] = %" PRId64 "\n", pos[2]);
+    //printf("[3] = %" PRId64 "\n", pos[3]);
     return 0;
 }
