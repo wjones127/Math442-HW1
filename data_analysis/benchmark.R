@@ -34,12 +34,19 @@ c.type <- c.fast %>%
   filter(iter == 5000)
 
 # Read asm data
-asm.bm <- read.csv('./asm.csv') %>%
-    mutate(lang = "asm")
+py.main.bm <- read.csv('./py_test.csv') %>%
+  mutate(lang="Python")
+c.main.bm <- read.csv('./c_test.csv') %>%
+  mutate(lang="C")
+asm.bm <- read.csv('./asm_test.csv') %>%
+    mutate(lang = "x86 Assembly")
 
 # Combine datasets
-all.bm <- c.bm %>% remove(optim.level) %>%
-    rbind(py.bm, asm.bm)
+all.bm <- py.main.bm %>% rename(iter = iters) %>%
+  mutate(chksum = as.numeric(NA),
+         time = time* 10^9) %>%
+  select(size, iter, time, chksum, lang) %>%
+  rbind(asm.bm, c.main.bm)
 
 
 # Plot for just python
@@ -81,7 +88,7 @@ lang.plot <- ggplot(all.bm, aes(x = size, y = time, color = lang)) +
     geom_point() +
     labs(title = "Runtimes for different Languages",
          x = "# of objects",
-         y = "time to execute 1000 iterations (microseconds)") +
+         y = "time to execute 60 iterations (nanoseconds)") +
     geom_smooth() +
     scale_x_log10()
 
