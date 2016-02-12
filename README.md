@@ -16,8 +16,15 @@ In this assignment, we
 
 ## Results
 
+### Question 1. Python benchmarks
+
+The test is run using the python script `python_code/find-times.py`. 
+It creates a csv file with the data.
+We then use R and ggplot2 to create plots to show the data.
+
 Here we plot the benchmark observations, with a LOESS fitted curve showing the
 general trend along with the standard error of the fitted curve.
+
 
 ![First python benchmark](https://raw.githubusercontent.com/wjones127/Math442-HW1/master/data_analysis/original_python_benchmark.jpeg)
 
@@ -36,31 +43,24 @@ is making inconsistently about how to run the program that has a huge effect
 on performance. It will be interesting to see whether this effect persists in
 the C and assembly implementations.
 
+### Question 2: C-float benchmarks
+
+The shell script `testc.sh` is designed to run the C function in a loop testing
+various numbers of iterations and input sizes. You can save a CSV file of the
+results by entering `./testc.sh > c_test_data.csv` into the shell.
+
 ![Comparison of C optimizations](https://raw.githubusercontent.com/wjones127/Math442-HW1/master/c_code/c_optimizations.png)
 
 Here we can see that optimization level of the compiler doesn't have a significant
 effect on performance of the program. Here we see greater variance in run time
 with greater input size.
 
+### Question 3: C-double benchmarks
+We benchmarked the c-double program using the same techniques as used in the c-float benchmarks
+
 ![Comparison of types in C](https://raw.githubusercontent.com/wjones127/Math442-HW1/master/c_code/c_type.png)
 
-We also see that in our test there wasn't a significant difference between using
-float or double in our program, at least in terms of speed. 
-
-
-
-## Running the Benchmarks
-
-We used a variety of methods to do the benchmarks, mainly to try out different
-tools. We created CSVs of data, with multiple observations for each combination
-of iteration counts and input sizes.
-
-We use R with ggplot2 to create plots to show the data.
-
-### The Python Test
-
-The test is run using the python script `python_code/find-times.py`. It creates
-a csv file with the data.
+We see that in our test there wasn't a significant difference in speed between using float or double in our program.
 
 ### The C Test
 
@@ -72,18 +72,16 @@ results by entering
 ./testc.sh > c_test_data.csv
 ```
 
-into the shell.
-
-**Note**: the C function does not compile on Mac OS X, because the timer function
-only exists on other OSes. I may look into a more portable option later.
-
-### The Assembly Test
-We implemented a `combine_array` function in assembly, which takes as input two float arrays and performs the the `+=` operation.
+### Question 4: C-assembly Test
+We then tried using inline assembly to see how that affected performance. 
+To do this, we implemented a `combine_array` function in assembly, which takes as input two float arrays and performs the the `+=` operation.
 We then replaced `update_coordinates` with three calls to `combine_array`, one call for each coordinate. 
+
+We benchmarked the c-assembly program using the same benchmarking techniques as described above.
 
 TODO add timings
 
-### Memory Profiling
+### Question Memory Profiling
 To profile the memory we used the massif tool inside of valgrind.
 The tool is used with the following commands:
 ```
