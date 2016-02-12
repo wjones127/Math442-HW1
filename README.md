@@ -92,11 +92,17 @@ ms_print massif_out > massif_print
 ```
 
 Running the profiler on the c code using floats produces the following:
+
 ![c-float graph](https://raw.githubusercontent.com/wjones127/Math442-HW1/master/memory_analysis/massif_graph_c_float.png)
+
 c-float graph ^
+
 ![c-double chart](https://raw.githubusercontent.com/wjones127/Math442-HW1/master/memory_analysis/massif_graph_c_double.png)
+
 c-double graph ^
+
 ![c-c-asm chart](https://raw.githubusercontent.com/wjones127/Math442-HW1/master/memory_analysis/massif_graph_asm.png)
+
 c-inline assembly with floats grpah ^
 
 First, the x-axis is Gi which is number of instructions times 1,000 (because its giga).
