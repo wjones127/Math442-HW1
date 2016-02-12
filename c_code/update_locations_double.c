@@ -28,7 +28,7 @@ int current_utc_time(struct timespec *ts) {
     ts->tv_nsec = mts.tv_nsec;
     return 1;
 #else
-    clock_gettime(CLOCK_REALTIME, ts);
+    return clock_gettime(CLOCK_REALTIME, ts);
 #endif
 }
 
