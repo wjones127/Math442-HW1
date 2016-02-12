@@ -73,7 +73,11 @@ We then replaced `update_coordinates` with three calls to `combine_array`, one c
 
 We benchmarked the c-assembly program using the same benchmarking techniques as described above.
 
-TODO add timings
+![Comparison of Languages](https://raw.githubusercontent.com/wjones127/Math442-HW1/master/data_analysis/lang_comparison.png)
+
+Here we can see that x86 Assembly is consistently faster than C which is
+consistently faster than Python. The assembly is about 20 times faster than
+C across the board and 100 times faster than the Python.
 
 ### Question 5. Memory Profiling
 To profile the memory we used the massif tool inside of valgrind.
