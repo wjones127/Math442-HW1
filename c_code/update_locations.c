@@ -36,7 +36,7 @@ int current_utc_time(struct timespec *ts)
 
 uint64_t current_time()
 {
-    /* returns time in milliseconds */
+    /* returns time in nanoseconds */
     struct timespec tp;
     int res = current_utc_time(&tp); 
     if (res == -1) {
