@@ -2,11 +2,11 @@
 echo "size, iter, time, chksum"
 
 # Loop over repetitions
-for i in  {1..5}
+for i in  {1..12}
 do
     # Loop over size
-    for (( k = 2048; k <= 131072; k *= 2))
+    for (( k = 256; k <= 2**24; k *= 2))
     do
-        ./doubletest $k 5000
+        ./3 $k 60 1
     done
 done
