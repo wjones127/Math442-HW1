@@ -47,7 +47,11 @@ the C and assembly implementations.
 
 The shell script `testc.sh` is designed to run the C function in a loop testing
 various numbers of iterations and input sizes. You can save a CSV file of the
-results by entering `./testc.sh > c_test_data.csv` into the shell.
+results by entering 
+```{sh}
+./testc.sh > c_test_data.csv` 
+```
+into the shell.
 
 ![Comparison of C optimizations](https://raw.githubusercontent.com/wjones127/Math442-HW1/master/c_code/c_optimizations.png)
 
@@ -62,17 +66,7 @@ We benchmarked the c-double program using the same techniques as used in the c-f
 
 We see that in our test there wasn't a significant difference in speed between using float or double in our program.
 
-### The C Test
-
-The shell script `testc.sh` is designed to run the C function in a loop testing
-various numbers of iterations and input sizes. You can save a CSV file of the
-results by entering
-
-```{sh}
-./testc.sh > c_test_data.csv
-```
-
-### Question 4: C-assembly Test
+### Question 4: C-assembly benchmarks
 We then tried using inline assembly to see how that affected performance. 
 To do this, we implemented a `combine_array` function in assembly, which takes as input two float arrays and performs the the `+=` operation.
 We then replaced `update_coordinates` with three calls to `combine_array`, one call for each coordinate. 
@@ -81,7 +75,7 @@ We benchmarked the c-assembly program using the same benchmarking techniques as 
 
 TODO add timings
 
-### Question Memory Profiling
+### Question 5. Memory Profiling
 To profile the memory we used the massif tool inside of valgrind.
 The tool is used with the following commands:
 ```
