@@ -46,7 +46,10 @@ t = timeit.timeit(stmt = "update_coords(x, y, z, vx, vy, vz)",
                   number = iters)
 
 chksum = sum(x) + sum(y) + sum(z)
-print("" + str(1000000 * t / (size * iters)) + "") # in microseconds
+
+print(str(size) + "," + str(iters) + "," + str(10**6 * t) + "," +
+      str(chksum) + "\n")
+#print("" + str(1000000 * t / (size * iters)) + "") # in microseconds
 #print("Final checksum is: " + str(chksum))
 
 exit(0)
