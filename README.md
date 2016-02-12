@@ -68,7 +68,7 @@ We see that in our test there wasn't a significant difference in speed between u
 
 ### Question 4: C-assembly benchmarks
 We then tried using inline assembly to see how that affected performance. 
-To do this, we implemented a `combine_array` function in assembly, which takes as input two float arrays and performs the the `+=` operation.
+To do this, we implemented a `combine_array` function in assembly, which takes as input two float arrays and performs the `+=` operation.
 We then replaced `update_coordinates` with three calls to `combine_array`, one call for each coordinate. 
 
 We benchmarked the c-assembly program using the same benchmarking techniques as described above.
