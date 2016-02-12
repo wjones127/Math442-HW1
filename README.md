@@ -107,12 +107,16 @@ The y-axis is MB, megabytes, and is a measure of the amount of memory on the hea
 Observations: 
 
 1. We notice that the graphs for c-float and asm are similar, but that the x-axis is longer for asm. 
-It is expected that the total amont of memory used by the two programs is the same, since our assembly optimizations were only for speeding up the `+=` operation, not reducing memory. However it is surprising that the x-axis is longer for asm. THis suggests that the asm code requires more instructions. Perhaps the compiler does some optimization, maybe vectorizes, to reduce the number of instructions.
+It is expected that the total amount of memory used by the two programs is the same, since our assembly optimizations were only for speeding up the `+=` operation, not reducing memory. However it is surprising that the x-axis is longer for asm. THis suggests that the asm code requires more instructions. Perhaps the compiler does some optimization, maybe vectorizes, to reduce the number of instructions.
 
-1. The graph of the program run using doubles uses twice as much memory as the two programs that use floats. This is expected since a double is twice the amount of memory as a float. Also note that the x-axis of the double graph is as long as the double graph. This indicates that the double program and the float program use the same number of instructions. This is consistent with our hypothesis in point 1, where we hypothesize that the float program requires less instructions due to some compiler optimizations, maybe vectorizing or some similar trick with 32/64 bit numbers. Since a float is 32 bits, and we are running this on a 64 bit machine, this is possible if the numbers are encoded with floats, but it is not possible if the numbers are encoded using doubles. 
+1. The graph of the program run using doubles uses twice as much memory as the two programs that use floats. This is expected since a double is twice the amount of memory as a float. Also note that the x-axis of the c-double graph is as long as the c-assembly graph. This indicates that the double program and the float program use the same number of instructions. This is consistent with our hypothesis in point 1, where we hypothesize that the float program requires less instructions due to some compiler optimizations, maybe vectorizing or some similar trick with 32/64 bit numbers. Since a float is 32 bits, and we are running this on a 64 bit machine, this is possible if the numbers are encoded with floats, but it is not possible if the numbers are encoded using doubles. 
 
 - Sources for memory profiling:
     - http://valgrind.org/docs/manual/ms-manual.html
     - https://sites.google.com/a/case.edu/hpc-upgraded-cluster/home/important-notes-for-new-users/valgrind-utility
     - https://developer.gnome.org/optimization-guide/stable/massif.html.en
+
+### Misc notes
+- Timing tests were run on MacOS.
+- Memory tests were run on Ubuntu 14.04. 
 
